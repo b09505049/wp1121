@@ -2,6 +2,7 @@ import {
   createDiary,
   getDiarys,
   updateDiaryStatus,
+  getFilteredDiary,
 } from "../controllers/diary.js";
 import express from "express";
 
@@ -17,6 +18,8 @@ router.get("/", getDiarys);
 router.post("/", createDiary);
 // PUT /api/diarys/:id
 router.put("/:id", updateDiaryStatus);
+// GET /api/diarys
+router.get("/:key/:value", getFilteredDiary);
 
 // export the router
 export default router;
