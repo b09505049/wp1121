@@ -14,7 +14,7 @@ yarn
 yarn start
 ```
 2. Open frontend/index.html in browser
-3. Join it!
+3. Enjoy it!
 
 ## Check prefect homework
 1. Complete "Filter" implementation.
