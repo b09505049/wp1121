@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>edit</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="edit.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+      integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Edit Mode</h1>
+    <div id="" class="diary-item">
+      <p id="diary-date">Date:</p>
+      <p id="diary-tag">Tag:</p>
+      <input type="radio" name="tag" id="學業" value="學業" />學業<br />
+      <input type="radio" name="tag" id="人際" value="人際" />人際<br />
+      <input type="radio" name="tag" id="社團" value="社團" />社團<br />
+      <input type="radio" name="tag" id="tag-其他" value="其他" />其他
+      <input
+        type="text"
+        id="tag-input"
+        placeholder="type your tag"
+        tabindex="1"
+      />
+      <p id="diary-mood">Mood:</p>
+      <input type="radio" name="mood" id="快樂" value="快樂" />快樂<br />
+      <input type="radio" name="mood" id="生氣" value="生氣" />生氣<br />
+      <input type="radio" name="mood" id="難過" value="難過" />難過<br />
+      <input type="radio" name="mood" id="mood-其他" value="其他" />其他
+      <input
+        type="text"
+        id="mood-input"
+        placeholder="type your mood"
+        tabindex="1"
+      />
+      <p id="diary-content">Content:</p>
+      <input
+        type="text"
+        id="content-input"
+        placeholder="How's your day?"
+        tabindex="1"
+      /><br />
+      <button id="diary-save" tabindex="3">Save</button>
+      <button id="diary-cancel" tabindex="3">Cancel</button>
+    </div>
+  </body>
+</html>

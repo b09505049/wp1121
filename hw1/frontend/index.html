@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>diary</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="index.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+      integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>My Diary</h1>
+    <div id="new-diary-container">
+      <button id="diary-add" tabindex="3">New Diary</button>
+    </div>
+    <section id="diarys"></section>
+  </body>
+  <template id="diary-item-template">
+    <div id="" class="diary-item">
+      <button data-id="" class="view-diary">
+        <p class="diary-on-button">diary on button</p>
+        <p class="diary-content">diary content</p>
+      </button>
+    </div>
+  </template>
+</html>
