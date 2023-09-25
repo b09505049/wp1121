@@ -8,16 +8,19 @@ const instance = axios.create({
 async function main() {
   setupEventListeners();
   try {
-    console.log("id: " + urlParams.get("id"));
-    console.log("date: " + urlParams.get("date"));
-    console.log("tag: " + urlParams.get("tag"));
-    console.log("mood: " + urlParams.get("mood"));
-    console.log("content: " + urlParams.get("content"));
-
     const container = document.querySelector(".diary-item");
     container.id = urlParams.get("id");
-    const date = document.getElementById("diary-date");
-    date.innerText = "Date: " + urlParams.get("date");
+
+    const dateParts = urlParams
+      .get("date")
+      .match(/\d{4}\.\d{2}\.\d{2}/)[0]
+      .split(".");
+    const yearText = document.getElementById("year-input");
+    yearText.value = dateParts[0];
+    const monthText = document.getElementById("month-input");
+    monthText.value = dateParts[1];
+    const dayText = document.getElementById("day-input");
+    dayText.value = dateParts[2];
 
     if (urlParams.get("tag").includes("其他")) {
       const tagRadio = document.getElementById("tag-其他");
@@ -72,9 +75,25 @@ function setupEventListeners() {
     const enteredContent = document.querySelector("#content-input").value;
     const enteredTag = document.querySelector("#tag-input").value;
     const enteredMood = document.querySelector("#mood-input").value;
-    console.log(selectedTag + selectedMood + enteredContent);
+    const enteredYear = document.querySelector("#year-input").value;
+    const enteredMonth = document.querySelector("#month-input").value;
+    const enteredDay = document.querySelector("#day-input").value;
+    const formattedDate = `${enteredYear}-${
+      enteredMonth < 10 && !(enteredMonth[0] == 0) ? "0" : ""
+    }${enteredMonth}-${
+      enteredDay < 10 && !(enteredDay[0] == 0) ? "0" : ""
+    }${enteredDay}`.toString();
 
-    if (!selectedTag) {
+    if (!enteredYear) {
+      alert("Please enter YEAR.");
+      return;
+    } else if (!enteredMonth) {
+      alert("Please enter MONTH.");
+      return;
+    } else if (!enteredDay) {
+      alert("Please enter DAY.");
+      return;
+    } else if (!selectedTag) {
       alert("Please select your tag");
       return;
     } else if (!selectedMood) {
@@ -89,11 +108,11 @@ function setupEventListeners() {
     } else if (selectedMood.value === "其他" && !enteredMood) {
       alert("Please enter your mood content.");
       return;
+    } else if (!dateIsValid(formattedDate)) {
+      alert("Please enter valid date (YYYY/MM/DD)");
     } else {
-      console.log(
-        selectedTag.value + " " + selectedMood.value + " " + enteredContent,
-      );
-      const date = urlParams.get("date");
+      const date = getStoredDate(formattedDate);
+      console.log(date);
       let tag;
       let mood;
       if (selectedTag.value === "其他") {
@@ -140,6 +159,18 @@ async function createDiary(diary) {
 async function updateDiaryStatus(id, diary) {
   const response = await instance.put(`/diarys/${id}`, diary);
   return response.data;
+}
+
+function dateIsValid(dateInput) {
+  const date = new Date(dateInput.toString());
+  return date instanceof Date && !isNaN(date);
+}
+
+function getStoredDate(formattedDate) {
+  const date = new Date(formattedDate.toString());
+  const dayOfWeek = ["日", "一", "二", "三", "四", "五", "六"][date.getDay()];
+  const storedDate = formattedDate.replace(/-/g, ".") + " (" + dayOfWeek + ")";
+  return storedDate;
 }
 
 main();
