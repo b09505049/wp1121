@@ -72,3 +72,27 @@ export const updateDiaryStatus = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const getFilteredDiary = async (req, res) => {
+  //
+  // Find all diarys
+  const { key, value } = req.params;
+  let diarys;
+  if (key === "tag") {
+    diarys = await DiaryModel.find({ tag: value });
+  } else if (key === "mood") {
+    diarys = await DiaryModel.find({ mood: value });
+  }
+  //
+  try {
+    // Return diarys
+    return res.status(200).json(diarys);
+  } catch (error) {
+    // If there is an error, return 500 and the error message
+    // You can read more about HTTP status codes here:
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+    // Or this meme:
+    // https://external-preview.redd.it/VIIvCoTbkXb32niAD-rxG8Yt4UEi1Hx9RXhdHHIagYo.jpg?auto=webp&s=6dde056810f99fc3d8dab920379931cb96034f4b
+    return res.status(500).json({ message: error.message });
+  }
+};

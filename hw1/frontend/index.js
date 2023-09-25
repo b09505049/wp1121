@@ -7,10 +7,10 @@ const instance = axios.create({
 });
 
 async function main() {
+  console.log(diaryList);
   setupEventListeners();
   try {
     const diarys = await getDiarys();
-    console.log(getDiarys());
     diarys.forEach((diary) => renderDiary(diary));
   } catch (error) {
     alert("Failed to load diarys!");
@@ -32,6 +32,49 @@ function setupEventListeners() {
       0 +
       "&content=" +
       0;
+  });
+  const selectFilter = document.getElementById("filter");
+  const buttonFilter = document.getElementById("filter-button");
+  buttonFilter.addEventListener("click", async () => {
+    const filter = selectFilter.value;
+    let key;
+    let value;
+    if (filter === "學業") {
+      key = "tag";
+      value = "學業";
+    } else if (filter === "人際") {
+      key = "tag";
+      value = "人際";
+    } else if (filter === "社團") {
+      key = "tag";
+      value = "社團";
+    } else if (filter === "快樂") {
+      key = "mood";
+      value = "快樂";
+    } else if (filter === "生氣") {
+      key = "mood";
+      value = "生氣";
+    } else if (filter === "難過") {
+      key = "mood";
+      value = "難過";
+    }
+    const filteredDiarys = await getFilteredDiary(key, value);
+    console.log(filteredDiarys);
+    const parent = document.getElementById("diarys");
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+    filteredDiarys.forEach((diary) => renderDiary(diary));
+    console.log(diaryList);
+  });
+  const showAllFilter = document.getElementById("show-all-button");
+  showAllFilter.addEventListener("click", async () => {
+    const parent = document.getElementById("diarys");
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+    const diarys = await getDiarys();
+    diarys.forEach((diary) => renderDiary(diary));
   });
 }
 
@@ -82,6 +125,11 @@ function getCurrentDate() {
 
 async function getDiarys() {
   const response = await instance.get("/diarys");
+  return response.data;
+}
+
+async function getFilteredDiary(key, value) {
+  const response = await instance.get(`/diarys/${key}/${value}`);
   return response.data;
 }
 
