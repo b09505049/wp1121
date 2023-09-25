@@ -7,11 +7,14 @@
 2. Paste your MONGO_URL in it, and save the PORT=8000.
 
 ### Run!!!
-1. $ cd backend
-2. $ yarn
-3. $ yarn start
-4. Open frontend/index.html in browser
-5. Join it!
+1. Run the following script.
+```bash
+cd backend
+yarn
+yarn start
+```
+2. Open frontend/index.html in browser
+3. Join it!
 
 ## Check prefect homework
 1. Complete "Filter" implementation.
@@ -21,13 +24,18 @@
 ## Check eslintrc
 
 ### Check frontend code
-1. $ cd frontend
-2. $ yarn
-3. $ yarn lint
-4. Please help me check if my frontend code pass the lint test.
+1. Run the following script.
+```bash
+cd frontend
+yarn
+yarn lint
+```
+2. Please help me check if my frontend code pass the lint test.
 
 ### Check backend code
-1. $ cd backend
-2. $ yarn
-3. $ yarn lint
-4. Please help me check if my backend code pass the lint test.
+```bash
+cd backend
+yarn
+yarn lint
+```
+2. Please help me check if my backend code pass the lint test.
