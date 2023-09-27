@@ -38,6 +38,6 @@ const diarySchema = new mongoose.Schema(
 );
 
 // Create a model
-const DiaryModel = mongoose.model("Diary", diarySchema);
+const DiaryModel = mongoose.model("InCaseWeGotTheSameNameOfDB", diarySchema);
 
 export default DiaryModel;
