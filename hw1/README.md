@@ -14,7 +14,7 @@ yarn
 yarn start
 ```
 2. Open frontend/index.html in browser
-3. Join it!
+3. Enjoy it!
 
 ## Check prefect homework
 1. Complete "Filter" implementation.
@@ -33,6 +33,7 @@ yarn lint
 2. Please help me check if my frontend code pass the lint test.
 
 ### Check backend code
+1. Run the following script
 ```bash
 cd backend
 yarn
